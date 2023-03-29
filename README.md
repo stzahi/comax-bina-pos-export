@@ -53,4 +53,34 @@ If you see those lines, then everything is fine :)
 
 Enjoy!
 
+#### 2. Less preferred way :(
+
+* Clone this repository to your computer.
+* Create a `.env` file using the example given in the repository (`.env.example`).
+
+* 
+```
+npm install
+```
+* Make sure you have all neccessary dependencies in order to run Puppeteer. (chromium installed).
+* This is the reason the first method is better. Puppeteer is included inside the docker image.
+* Run the script using 
+```
+node index.js
+```
+Everytime you want to sample the data.
+
+You should see the following 3 lines:
+```
+ STARTED 
+
+Connected! fetching data
+DONE
+```
+If you see those lines, then everything is fine :)
+
+Enjoy!
+
+
+
 
