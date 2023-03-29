@@ -4,7 +4,7 @@
 This is a simple script uses to export data from COMAX Bina POS system (Israeli cash register company who doesn't provide any API to connect to it's simple cashier services).
 
 This script uses Puppeteer to simulate a regular login into the system,
-Then it will send 2 JSON arrays to an external endpoint the user defines.
+Then it will send 2 JSON arrays to an external endpoints defined by the user.
 
 First array contains **all customers' information** (saved as contacts in comax's system).
 
