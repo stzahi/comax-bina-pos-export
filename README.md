@@ -17,39 +17,40 @@ The information will be sent to an external routes, it is recommended to use a t
 
 #### 1. Preferred way (Using Docker)
 
-Make sure you have docker installed on the machine running the script.
+* Make sure you have docker installed on the machine running the script.
 
-
-in the following line, change:
-- `your@username.com` to your username email address
-- `TopSecretPassword` to your account's password
-- `https://hook.eu1.make.com/customers-hook` to the customers' hook destination (the data will be sent to this address using a POST HTTP request).
-- `https://hook.eu1.make.com/invoices-hook` to the invoices' hook destination (the data will be sent to this address using a POST HTTP request).
-
-
+* Run
 ```
   docker container run --name=comax-bina-pos --env COMAX_BINA_USERNAME=your@username.com --env COMAX_BINA_PASSWORD=TopSecretPassword --env ALL_CUSTOMERS_HOOK=https://hook.eu1.make.com/customers-hook --env ALL_INVOICES_HOOK=https://hook.eu1.make.com/invoices-hook stzahi/comax-bina-pos:latest 
 ```
 
-Now, from now on you can simple run it (one-time) using the following line:
+* in the following line, change:
+  * `your@username.com` to your username email address
+  * `TopSecretPassword` to your account's password
+  * `https://hook.eu1.make.com/customers-hook` to the customers' hook destination (the data will be sent to this address using a POST HTTP request).
+  * `https://hook.eu1.make.com/invoices-hook` to the invoices' hook destination (the data will be sent to this address using a POST HTTP request).
+
+
+
+* Now, from now on you can simple run it (one-time) using the following line:
 
 ```
 docker container start comax-bina-pos
 ```
 
-You can check the activity by checking the container's logs:
+* You can check the activity by checking the container's logs:
 ```
 docker container logs comax-bina-pos
 ```
 
-Everytime you start the container the log should be added with 3 lines:
+* Everytime you start the container the log should be added with 3 lines:
 ```
  STARTED 
 
 Connected! fetching data
 DONE
 ```
-If you see those lines, then everything is fine :)
+* If you see those lines, then everything is fine :)
 
 Enjoy!
 
