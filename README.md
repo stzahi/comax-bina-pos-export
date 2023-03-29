@@ -34,12 +34,12 @@ in the following line, change:
 Now, from now on you can simple run it (one-time) using the following line:
 
 ```
-docker container start comax
+docker container start comax-bina-pos
 ```
 
 You can check the activity by checking the container's logs:
 ```
-docker container logs comax
+docker container logs comax-bina-pos
 ```
 
 Everytime you start the container the log should be added with 3 lines:
