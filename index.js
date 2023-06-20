@@ -11,8 +11,17 @@ const puppeteer = require("puppeteer");
   });
   const page = await browser.newPage();
   console.log("\n\n STARTED \n");
+  // Forwards all console messages to node console
+  page.on("console", async (msg) => {
+    const msgArgs = msg.args();
+    for (let i = 0; i < msgArgs.length; ++i) {
+      console.log(await msgArgs[i].jsonValue());
+    }
+  });
+
   await page.goto("https://rms.comax.co.il/login");
 
+  console.log("URL now is: ", page.url());
   // Set screen size
   await page.setViewport({ width: 1080, height: 1024 });
 
@@ -55,6 +64,7 @@ const puppeteer = require("puppeteer");
         }
       ).then((res) => {
         res.json().then((data) => {
+          console.log("CUSTOMERS fetched! sending to hook " + firstHook);
           fetch(firstHook, {
             body: JSON.stringify(data),
             method: "POST",
@@ -62,7 +72,7 @@ const puppeteer = require("puppeteer");
         });
       });
 
-      return fetch(
+      fetch(
         "https://rms.comax.co.il/sales/invoices/list/?type=invoice_receipt&order=1&sorting=datedoc&location=371&start=0&length=1000000&addLog=true",
         {
           headers: {
@@ -86,6 +96,7 @@ const puppeteer = require("puppeteer");
         }
       ).then((res) => {
         res.json().then((data) => {
+          console.log("INVOICES fetched! sending to hook " + secondHook);
           fetch(secondHook, {
             body: JSON.stringify(data),
             method: "POST",
@@ -98,6 +109,8 @@ const puppeteer = require("puppeteer");
   );
 
   console.log("DONE");
-  await page.waitForNetworkIdle();
-  await browser.close();
+  setTimeout(() => {
+    console.log("Closing browser");
+    browser.close();
+  }, 10000);
 })(process.env.ALL_CUSTOMERS_HOOK, process.env.ALL_INVOICES_HOOK);
