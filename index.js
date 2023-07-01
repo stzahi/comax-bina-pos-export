@@ -66,7 +66,7 @@ const puppeteer = require("puppeteer");
         res.json().then((data) => {
           console.log("CUSTOMERS fetched! sending to hook " + firstHook);
           fetch(firstHook, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(data.reverse()),
             method: "POST",
           });
         });
@@ -98,7 +98,7 @@ const puppeteer = require("puppeteer");
         res.json().then((data) => {
           console.log("INVOICES fetched! sending to hook " + secondHook);
           fetch(secondHook, {
-            body: JSON.stringify(data),
+            body: JSON.stringify(data.reverse()),
             method: "POST",
           });
         });
